@@ -20,26 +20,18 @@ class TeamDetailVC: UIViewController
     var VM : TeamDetailViewModel!
     var bag = DisposeBag()
     
-    
-    
-    
     //MARK: - IBOutlet(s)
     @IBOutlet weak var teamBadge: UIImageView!
-    @IBOutlet weak var stadiumImageView: UIImageView!
     @IBOutlet weak var teamInfoLabel: UILabel!
-    @IBOutlet weak var stadiumInfoLabel: UILabel!
     @IBOutlet weak var navBar: UINavigationBar!
     
-    
     //MARK: - IBAction(s)
-
-    
-    //MARK: - Helper Funcs
     @objc func back()
     {
         self.dismiss(animated: true)
     }
     
+    //MARK: - Helper Funcs
     func setUI()
     {
         //set navBar
@@ -61,8 +53,6 @@ class TeamDetailVC: UIViewController
             guard let self = self else { return }
             self.teamBadge.sd_setImage(with: URL(string: team.strTeamBadge ?? ""), placeholderImage: UIImage(named: "placeHolder"))
             self.teamInfoLabel.text = "\(team.strTeam ?? "")\nFormed in : \(team.intFormedYear ?? "")\nLeague: \(team.strLeague ?? "")\nDescription: \(team.strDescriptionEN ?? "")"
-
-            
         }
         ).disposed(by: bag)
     }

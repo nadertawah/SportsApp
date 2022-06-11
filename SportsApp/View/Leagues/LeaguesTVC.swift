@@ -12,8 +12,6 @@ import SDWebImage
 
 class LeaguesTVC: UIViewController
 {
-    
-
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -84,8 +82,6 @@ class LeaguesTVC: UIViewController
             navBar.topItem?.leftBarButtonItem = UIBarButtonItem(customView: backbutton)
         }
         
-        
-        
         // Register cells
         tableView.register(UINib(nibName: "LeaguesTVCell", bundle: nil), forCellReuseIdentifier: leaguesCellReuseIdentifier)
         
@@ -93,7 +89,6 @@ class LeaguesTVC: UIViewController
         tableView.rx.setDelegate(self).disposed(by: bag)
 
        
-        
         //Bind to collectionView
         VM.leaguesModel.bind(to: self.tableView.rx.items(cellIdentifier: leaguesCellReuseIdentifier, cellType: LeaguesTVCell.self))
         {
@@ -122,10 +117,27 @@ class LeaguesTVC: UIViewController
         {
             [weak self] cell in
             guard let self = self else {return}
-            let leaguesDetailsV = LeaguesDetailsVC.init(nibName: "LeaguesDetailsVC", bundle: nil)
-            leaguesDetailsV.VM = LeagueDetailsViewModel(league: cell)
-            leaguesDetailsV.modalPresentationStyle = .fullScreen
-            self.present(leaguesDetailsV, animated: true)
+            if API.isConnectedToInternet
+            {
+                let leaguesDetailsV = LeaguesDetailsVC.init(nibName: "LeaguesDetailsVC", bundle: nil)
+                leaguesDetailsV.VM = LeagueDetailsViewModel(league: cell)
+                leaguesDetailsV.modalPresentationStyle = .fullScreen
+                self.present(leaguesDetailsV, animated: true)
+            }
+            else
+            {
+                DispatchQueue.main.async
+                {
+                    [weak self] in
+                    guard let self = self else {return}
+                    let alert = UIAlertController(title: "Error", message: "There's no internet connection!", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: {_ in })
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                }
+                
+            }
+           
             
         }).disposed(by: bag)
     }

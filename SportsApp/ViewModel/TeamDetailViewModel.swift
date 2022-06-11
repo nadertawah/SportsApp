@@ -10,17 +10,12 @@ import RxRelay
 
 class TeamDetailViewModel
 {
-    
-    
     //MARK: - Var(s)
     private(set) var teamDetailModel = BehaviorRelay<Team>(value: Team())
         
-    
     init(team: Team)
     {
         teamDetailModel.accept(team)
     }
-    
-    
 }
 

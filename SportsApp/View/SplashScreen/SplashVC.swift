@@ -15,10 +15,10 @@ class SplashVC: UIViewController {
         super.viewDidLoad()
 
         let animationView = AnimationView(name: "splash")
-        animationView.loopMode = LottieLoopMode.repeat(1)
+        animationView.loopMode = LottieLoopMode.playOnce
         
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
+        let width = Constants.screenWidth
+        let height = Constants.screenHeight
         animationView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         animationView.contentMode = .scaleAspectFit
         view.addSubview(animationView)

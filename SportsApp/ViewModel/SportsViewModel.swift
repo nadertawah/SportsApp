@@ -10,16 +10,10 @@ import RxRelay
 
 class SportsViewModel
 {
-    
-    
     //MARK: - Var(s)
     private(set) var sportsModel = BehaviorRelay<[Sport]>(value: [Sport]())
     
-    //MARK: - intent(s)
-    
-    
     //MARK: - Helper Funcs
-
     func getSports()
     {
         API.shared.httpGet(urlStr: Constants.allSportsApiUrl, type: Dictionary<String,[SportModel]>.self)

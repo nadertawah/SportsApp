@@ -183,8 +183,8 @@
 		7594FD0F284CCC2600CFB655 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7599D1102853BE3D00A4634C /* SplashScreen */,
 				7594FD04284CCB4900CFB655 /* LaunchScreen.storyboard */,
+				7599D1102853BE3D00A4634C /* SplashScreen */,
 				7594FD19284CCF6E00CFB655 /* Base */,
 				7594FD4A284DD70500CFB655 /* Templates */,
 				7594FD18284CCF5E00CFB655 /* Sports */,

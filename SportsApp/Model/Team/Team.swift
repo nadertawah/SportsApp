@@ -180,7 +180,6 @@ class TeamModel:Team, Decodable
         self.strTeamBanner = try container.decode(String?.self, forKey: .strTeamBanner)
         self.strYoutube = try container.decode(String?.self, forKey: .strYoutube)
         self.strLocked = try container.decode(String?.self, forKey: .strLocked)
-        
         self.strStadium = try container.decode(String?.self, forKey: .strStadium)
         self.strTeamShort = try container.decode(String?.self, forKey: .strTeamShort)
         self.strStadiumThumb = try container.decode(String?.self, forKey: .strStadiumThumb)

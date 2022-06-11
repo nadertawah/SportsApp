@@ -44,9 +44,4 @@ class BaseTabBar:  UITabBarController
         
 
     }
-//
-//    let leaguesV = LeaguesTVC.init(nibName: "LeaguesTVC", bundle: nil)
-//    leaguesV.modalPresentationStyle = .fullScreen
-//    self.present(leaguesV, animated: true)
-    
 }

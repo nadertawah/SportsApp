@@ -14,11 +14,7 @@ class LeaguesViewModel
     //MARK: - Var(s)
     private(set) var leaguesModel = BehaviorRelay<[League]>(value: [League]())
     
-    //MARK: - intent(s)
-    
-    
     //MARK: - Helper Funcs
-
     func getLeagues(sport:String)
     {
         if sport != ""

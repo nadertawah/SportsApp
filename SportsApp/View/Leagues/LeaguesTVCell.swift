@@ -24,9 +24,4 @@ class LeaguesTVCell: UITableViewCell {
     @IBOutlet weak var videoBtn: UIButton!
     @IBOutlet weak var leagueLabel: UILabel!
     @IBOutlet weak var imgView: UIImageView!
-    
-    //MARK: - IBAction(s)
-    
-    
-    //MARK: - Helper Funcs
 }

@@ -7,7 +7,8 @@
 
 import UIKit
 
-class LabelCollectionViewCell: UICollectionViewCell {
+class LabelCollectionViewCell: UICollectionViewCell
+{
 
     override func awakeFromNib()
     {
@@ -17,9 +18,6 @@ class LabelCollectionViewCell: UICollectionViewCell {
     }
 
     //MARK: - IBOutlet(s)
-    
     @IBOutlet weak var label: UILabel!
-    
-    //MARK: - IBAction(s)
-    
+        
 }

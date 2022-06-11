@@ -26,9 +26,7 @@ class SportsCollViewController: UIViewController
     private let sportsCellReuseIdentifier = "SportsCell"
     var VM = SportsViewModel()
     let bag = DisposeBag()
-    
-    //MARK: - intent(s)
-    
+        
     //MARK: - IBOutlet(s)
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var collectionView: UICollectionView!

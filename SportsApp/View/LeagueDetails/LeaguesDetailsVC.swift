@@ -34,7 +34,6 @@ class LeaguesDetailsVC: UIViewController, UICollectionViewDelegate
     //MARK: - IBAction(s)
     @objc func toggleFav()
     {
-        
         VM.toggleLeagueFav()
     }
     
@@ -49,7 +48,6 @@ class LeaguesDetailsVC: UIViewController, UICollectionViewDelegate
                 imgStr = "star.fill"
             }
             self?.navBar.topItem?.rightBarButtonItem?.changeCustomBarBtnImage(img: UIImage(systemName: imgStr))
-
         }
         
     }
@@ -59,7 +57,7 @@ class LeaguesDetailsVC: UIViewController, UICollectionViewDelegate
     }
     func setUI()
     {
-        //set navBar
+        //set navBar tintcolor and title
         self.navBar.barTintColor = .gray
         navBar.topItem?.title = "Leagues Details"
         
