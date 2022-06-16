@@ -38,6 +38,7 @@ class LeaguesDetailsVC: UIViewController, UICollectionViewDelegate
     }
     
     //MARK: - Helper Funcs
+   
     func toggleFavBtnImage(isFav: Bool)
     {
         DispatchQueue.main.async
@@ -76,6 +77,34 @@ class LeaguesDetailsVC: UIViewController, UICollectionViewDelegate
             self?.toggleFavBtnImage(isFav: isFav)
         }.disposed(by: bag)
         
+        
+        //set back button
+        setBackButton()
+        
+        //Register collection views cells and set delegates
+        registerCellsAndSetDelegates()
+
+        //Bind VM
+        bindVM()
+        
+        //set no data img if the collection is empty
+        setNoDataImage()
+        
+        //set did select row at
+        teamsCollView.rx.modelSelected(Team.self).subscribe(onNext:
+        {
+            [weak self] cell in
+            guard let self = self else {return}
+            let teamDetailsV = TeamDetailVC.init(nibName: "TeamDetailVC", bundle: nil)
+            teamDetailsV.VM = TeamDetailViewModel(team: cell)
+            teamDetailsV.modalPresentationStyle = .fullScreen
+            self.present(teamDetailsV, animated: true)
+        }).disposed(by: bag)
+        
+    }
+    
+    func setBackButton()
+    {
         //set back button
         let backbutton = UIButton(type: .custom)
         backbutton.setImage(UIImage(systemName: "chevron.backward")?.withTintColor(.black).withRenderingMode(.alwaysOriginal), for: .normal)
@@ -83,9 +112,10 @@ class LeaguesDetailsVC: UIViewController, UICollectionViewDelegate
         backbutton.setTitleColor(.black, for: .normal)
         backbutton.addTarget(self, action: #selector(back), for: .touchUpInside)
         navBar.topItem?.leftBarButtonItem = UIBarButtonItem(customView: backbutton)
-
-        
-        
+    }
+    
+    func registerCellsAndSetDelegates()
+    {
         // Register cells
         upcomingEventsCollView.register(UINib(nibName: labelCollectionViewCellIdentifer, bundle: nil), forCellWithReuseIdentifier: labelCollectionViewCellIdentifer)
         
@@ -97,8 +127,10 @@ class LeaguesDetailsVC: UIViewController, UICollectionViewDelegate
         upcomingEventsCollView.rx.setDelegate(self).disposed(by: bag)
         latestResultsCollView.rx.setDelegate(self).disposed(by: bag)
         teamsCollView.rx.setDelegate(self).disposed(by: bag)
-
-        //Bind VM
+    }
+    
+    func bindVM()
+    {
         VM.upcomingEvents.bind(to: upcomingEventsCollView.rx.items(cellIdentifier: labelCollectionViewCellIdentifer, cellType: LabelCollectionViewCell.self))
         {
             idx,item,cell in
@@ -125,22 +157,26 @@ class LeaguesDetailsVC: UIViewController, UICollectionViewDelegate
 
             
         }.disposed(by: bag)
-        
-        
-        //set did select row at
-        teamsCollView.rx.modelSelected(Team.self).subscribe(onNext:
-        {
-            [weak self] cell in
-            guard let self = self else {return}
-            let teamDetailsV = TeamDetailVC.init(nibName: "TeamDetailVC", bundle: nil)
-            teamDetailsV.VM = TeamDetailViewModel(team: cell)
-            teamDetailsV.modalPresentationStyle = .fullScreen
-            self.present(teamDetailsV, animated: true)
-        }).disposed(by: bag)
-        
     }
     
-    
+    func setNoDataImage()
+    {
+        VM.upcomingEvents.subscribe
+        { [weak self] in
+            self?.upcomingEventsCollView.toggleNoDataImgView(hasNoData: $0.element?.isEmpty ?? false )
+        }.disposed(by: bag)
+
+        VM.latestEvents.subscribe
+        { [weak self] in
+
+            self?.latestResultsCollView.toggleNoDataImgView(hasNoData: $0.element?.isEmpty ?? false )
+        }.disposed(by: bag)
+        
+        VM.teams.subscribe
+        { [weak self] in
+            self?.teamsCollView.toggleNoDataImgView(hasNoData: $0.element?.isEmpty ?? false )
+        }.disposed(by: bag)
+    }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout

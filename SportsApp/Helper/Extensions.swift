@@ -12,10 +12,15 @@ extension UIImageView
 {
     func circle()
     {
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.cornerRadius = self.frame.width / 2
-        self.layer.masksToBounds = true
+        DispatchQueue.main.async
+        {
+            [weak self] in
+            guard let self = self else { return }
+            self.layer.borderWidth = 1
+            self.layer.borderColor = UIColor.black.cgColor
+            self.layer.cornerRadius = self.frame.width / 2
+            self.layer.masksToBounds = true
+        }
     }
 }
 
@@ -27,6 +32,8 @@ extension UIBarButtonItem
     {
         DispatchQueue.main.async
         {
+            [weak self] in
+            guard let self = self else { return }
             let btn = self.customView as! UIButton
             
             btn.setImage(img?.withTintColor(.black).withRenderingMode(.alwaysOriginal), for: .normal)
@@ -34,4 +41,34 @@ extension UIBarButtonItem
         }
        
     }
+}
+
+
+extension UICollectionView
+{
+    func toggleNoDataImgView(hasNoData : Bool)
+        {
+            DispatchQueue.main.async
+            {
+                [weak self] in
+                guard let self = self else { return }
+                if hasNoData
+                {
+                    let imgView = UIImageView()
+                    imgView.tag = 1997
+                    imgView.frame = self.bounds
+                    imgView.image = UIImage(named: "noData")
+                    imgView.contentMode = .scaleAspectFill
+                    self.addSubview(imgView)
+                }
+                else
+                {
+                    if let noDataMask = self.viewWithTag(1997) as? UIImageView
+                    {
+                        noDataMask.removeFromSuperview()
+                    }
+                }
+            }
+            
+        }
 }

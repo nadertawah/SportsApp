@@ -15,7 +15,8 @@ class SportsCollectionViewCell: UICollectionViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
-       
+        self.layer.cornerRadius = 10
+        sportLabel.layer.cornerRadius = 10
     }
 
 }

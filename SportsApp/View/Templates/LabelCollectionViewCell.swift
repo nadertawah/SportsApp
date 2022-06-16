@@ -13,8 +13,10 @@ class LabelCollectionViewCell: UICollectionViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
+        self.layer.cornerRadius = 10
         label.layer.borderWidth = 1
         label.layer.borderColor = UIColor.black.cgColor
+        
     }
 
     //MARK: - IBOutlet(s)

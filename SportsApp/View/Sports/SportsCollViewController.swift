@@ -57,6 +57,9 @@ class SportsCollViewController: UIViewController
             cell.imgView.sd_setImage(with: URL(string: item.strSportThumb), placeholderImage: UIImage(named: "placeHolder"))
         }.disposed(by: bag)
         
+        //set no data img if the collection is empty
+        setNoDataImg()
+        
         //set did select row at
         collectionView.rx.itemSelected.subscribe(onNext:
         {
@@ -71,8 +74,15 @@ class SportsCollViewController: UIViewController
 
     }
     
-   
+    func setNoDataImg()
+    {
+        VM.sportsModel.subscribe
+        { [weak self] in
+            self?.collectionView.toggleNoDataImgView(hasNoData: $0.element?.isEmpty ?? false )
+        }.disposed(by: bag)
+    }
 }
+
 
 
 // MARK: UICollectionViewDelegateFlowLayout
