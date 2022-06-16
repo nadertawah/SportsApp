@@ -53,7 +53,7 @@
 		75259011284FB3770081AEBB /* LeaguesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesTVC.swift; sourceTree = "<group>"; };
 		75259012284FB3770081AEBB /* LeaguesTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaguesTVC.xib; sourceTree = "<group>"; };
 		7525901528503A1B0081AEBB /* Miscellaneous .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Miscellaneous .swift"; sourceTree = "<group>"; };
-		752590172850510B0081AEBB /* LeagueDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeagueDetailsViewModel.swift; path = ../../../LeagueDetailsViewModel.swift; sourceTree = "<group>"; };
+		752590172850510B0081AEBB /* LeagueDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewModel.swift; sourceTree = "<group>"; };
 		7525901B285053100081AEBB /* LeagueDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetails.swift; sourceTree = "<group>"; };
 		75513D9E284FAB8E0070514A /* SportsCollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCollViewController.swift; sourceTree = "<group>"; };
 		75513D9F284FAB8E0070514A /* SportsCollViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportsCollViewController.xib; sourceTree = "<group>"; };
